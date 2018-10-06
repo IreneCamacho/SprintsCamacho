@@ -107,7 +107,7 @@ function nearByLocations(lat, lng)
   })
 
   infowindow = new google.maps.InfoWindow();
-  var placeService = new google.maps.places.PlacesService(map)
+  var placesService = new google.maps.places.PlacesService(map)
 
   var nearBySearch = placeService.nearbySearch({
       location: location,
