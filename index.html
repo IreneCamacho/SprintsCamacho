@@ -125,8 +125,44 @@ function nearBySearchCallback(results, status) {
             destinations.push(r.geometry.location)
           });
 
+  var distanceResults = null
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [currentLocation],
+      destinations: destinations,
+      travelMode: 'DRIVING',
+      //transitOptions: TransitOptions,
+      //drivingOptions: DrivingOptions,
+      //unitSystem:UnitSystem,
+      //avoidHighways: Boolean,
+      //avoidTolls: Boolean,
 
+    },
+function (result, status)
+{
+  distanceResults = result.rows
 
+  console.log('result', distanceResults)
+
+  var row = '<div class="row">'
+  for (var i=0; i < results.length; i++)
+{
+  createMarker(results[i]);
+  //console.log(results[i])
+  var rest = results[i]
+
+  row +='<div class="col-xs-6 col-md-4">'
+  row +='<div class="rest-image"> <img src="' + rest.icon + '"> </div>'
+  row +='<div class="name"> '+ rest.name + '</div>'
+  row +='<div class="distance">' + distanceResults[0].elements[i].distance.text + ' in ' + distanceResults[0].elements[i].duration.text + '</div'
+  row += '</div>'
+
+}
+  row += '</div>'
+  document.getElementById('suggestedRestaurants').innerHTML = row
+
+});
 
 
       }
