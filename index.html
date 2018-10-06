@@ -115,10 +115,12 @@ function nearByLocations(lat, lng)
       type: 'restaurants',
 
   }, nearBySearchCallback)
+
 }
 
 function nearBySearchCallback(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
+
           var destinations = []
           results.forEach(r => {
             console.log(r)
@@ -138,24 +140,22 @@ function nearBySearchCallback(results, status) {
       //avoidHighways: Boolean,
       //avoidTolls: Boolean,
 
-    },
-function (result, status)
-{
+    }, function (result, status){
   distanceResults = result.rows
 
   console.log('result', distanceResults)
 
   var row = '<div class="row">'
-  for (var i=0; i < results.length; i++)
-{
+  for (var i=0; i < results.length; i++) {
   createMarker(results[i]);
   //console.log(results[i])
+
   var rest = results[i]
 
-  row +='<div class="col-xs-6 col-md-4">'
-  row +='<div class="rest-image"> <img src="' + rest.icon + '"> </div>'
-  row +='<div class="name"> '+ rest.name + '</div>'
-  row +='<div class="distance">' + distanceResults[0].elements[i].distance.text + ' in ' + distanceResults[0].elements[i].duration.text + '</div'
+  row += '<div class="col-xs-6 col-md-4">'
+  row += '<div class="rest-image"> <img src="' + rest.icon + '"> </div>'
+  row += '<div class="name"> ' + rest.name + ' </div>'
+  row += '<div class="distance">' + distanceResults[0].elements[i].distance.text + ' in ' + distanceResults[0].elements[i].duration.text + '</div'
   row += '</div>'
 
 }
@@ -183,8 +183,8 @@ function createMarker(place)
       infowindow.open(map, this);
 
     });
-
 }
+
 </script>
 
 </head>
@@ -326,6 +326,8 @@ function createMarker(place)
             <div class="section" id="contact">
                 <div id="googleMap"></div>
                 <div class="footer_pos">
+
+                  
                     <div class="container">
                         <div class="footer_content">
                             <div class="row">
