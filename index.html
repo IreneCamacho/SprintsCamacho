@@ -110,7 +110,7 @@ function nearByLocations(lat, lng)
   infowindow = new google.maps.InfoWindow();
   var placeService = new google.maps.places.PlacesService(map)
 
-  var nearBySearch = placeService.nearBySearch({
+  var nearBySearch = placeService.nearbySearch({
       location: location,
       radius: 3000,
       type: 'restaurants',
