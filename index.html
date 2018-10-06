@@ -106,11 +106,33 @@ function nearByLocations(lat, lng)
     zoom: 15,
   })
 
+  infowindow = new google.maps.InfoWindow();
+  var placeService = new google.maps.places.PlacesService(map)
 
+  var nearBySearch = placeService.nearBySearch({
+      location: location,
+      radius: 3000,
+      type: 'restaurants',
+
+  }, nearBySearchCallback)
+}
+
+function nearBySearchCallback(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+          var destinations = []
+          results.forEach(r => {
+            console.log(r)
+            destinations.push(r.geometry.location)
+          });
+
+
+
+
+
+      }
 
 
 }
-
 
 </script>
 
