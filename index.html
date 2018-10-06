@@ -44,7 +44,6 @@ function successFunction(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
     codeLatLng(lat, lng)
-
     nearByLocations(lat, lng)
 }
 
@@ -98,13 +97,13 @@ function errorFunction(){
 function nearByLocations(lat, lng)
 
 {
+
   var location = {lat: lat, lng: lng};
   currentLocation = {lat: lat, lng: lng};
 
-  map = new google.maps.Map(document.getElementById('googleMap'),
-  {
-    center: location,
-    zoom: 15,
+  map = new google.maps.Map(document.getElementById('googleMap'), {
+      center: location,
+      zoom: 15,
   })
 
   infowindow = new google.maps.InfoWindow();
@@ -116,7 +115,6 @@ function nearByLocations(lat, lng)
       type: 'restaurants',
 
   }, nearBySearchCallback)
-
 }
 
 function nearBySearchCallback(results, status) {
@@ -124,67 +122,61 @@ function nearBySearchCallback(results, status) {
 
           var destinations = []
           results.forEach(r => {
-            console.log(r)
-            destinations.push(r.geometry.location)
+              console.log(r)
+              destinations.push(r.geometry.location)
           });
 
-  var distanceResults = null
-  var service = new google.maps.DistanceMatrixService();
-  service.getDistanceMatrix(
-    {
-      origins: [currentLocation],
-      destinations: destinations,
-      travelMode: 'DRIVING',
-      //transitOptions: TransitOptions,
-      //drivingOptions: DrivingOptions,
-      //unitSystem:UnitSystem,
-      //avoidHighways: Boolean,
-      //avoidTolls: Boolean,
+          var distanceResults = null
+          var service = new google.maps.DistanceMatrixService();
+          service.getDistanceMatrix(
+          {
+              origins: [currentLocation],
+              destinations: destinations,
+              travelMode: 'DRIVING',
+              //transitOptions: TransitOptions,
+              //drivingOptions: DrivingOptions,
+              //unitSystem: UnitSystem,
+              //avoidHighways: Boolean,
+              //avoidTolls: Boolean,
+          }, function(result, status){
+              distanceResults = result.rows
 
-    }, function (result, status){
-  distanceResults = result.rows
+              console.log('result', distanceResults)
 
-  console.log('result', distanceResults)
+              var row = '<div class="row">'
+              for (var i = 0; i < results.length; i++) {
+                  createMarker(results[i]);
+                  //console.log(results[i])
+                  var rest = results[i]
 
-  var row = '<div class="row">'
-  for (var i=0; i < results.length; i++) {
-  createMarker(results[i]);
-  //console.log(results[i])
+                  row += '<div class="col-xs-6 col-md-4">'
+                  row += '<div class="rest-image"> <img src="' + rest.icon + '">  </div>'
+                  row += '<div class="name"> ' + rest.name + ' </div>'
+                  row += '<div class="distance">' + distanceResults[0].elements[i].distance.text + ' in ' + distanceResults[0].elements[i].duration.text + '</div>'
+                  row += '</div>'
+              }
+              row += '</div>'
+              document.getElementById('suggestedRestaurants').innerHTML = row
+          });
 
-  var rest = results[i]
 
-  row += '<div class="col-xs-6 col-md-4">'
-  row += '<div class="rest-image"> <img src="' + rest.icon + '"> </div>'
-  row += '<div class="name"> ' + rest.name + ' </div>'
-  row += '<div class="distance">' + distanceResults[0].elements[i].distance.text + ' in ' + distanceResults[0].elements[i].duration.text + '</div'
-  row += '</div>'
-
-}
-  row += '</div>'
-  document.getElementById('suggestedRestaurants').innerHTML = row
-
-});
 
 
       }
+  }
 
-}
+  function createMarker(place) {
+      var placeLoc = place.geometry.location;
+      var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+      });
 
-function createMarker(place)
-{
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.Location
-    });
-
-    google.maps.event.addListener(marker, 'click', function()
-    {
-      infowindow.setContent(place.name);
-      infowindow.open(map, this);
-
-    });
-}
+      google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+      });
+  }
 
 </script>
 
