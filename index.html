@@ -81,7 +81,6 @@ function errorFunction(){
         //city data
         //alert(city.short_name + " " + city.long_name)
 
-
         } else {
           alert("No results found");
         }
@@ -108,7 +107,7 @@ function nearByLocations(lat, lng)
 
   infowindow = new google.maps.InfoWindow();
   var placeService = new google.maps.places.PlacesService(map)
-  var nearBySearch = placeService.nearbySearch({
+  var nearBySearch = placesService.nearbySearch({
       location: location,
       radius: 3000,
       type: 'restaurants',
