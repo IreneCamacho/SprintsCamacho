@@ -1,0 +1,89 @@
+
+
+#rest-modal-content{
+  padding: 20px 10px;
+  font-size: 14px;
+
+}
+
+#rest-modal-content .name{
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+#rest-modal-content label{
+    font-size: 12px;
+    color: #555555;
+    padding-right: 10px;
+
+}
+
+#rest-modal-content .rating span{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#rest-modal-content .distance span{
+    font-weight: 600;
+}
+
+#rest-modal-content .status{
+    font-weight: 600;
+}
+
+#rest-modal-content .status{
+    color: green;
+}
+
+#rest-modal-content .closed{
+    color: red;
+}
+
+.rest-col{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#suggestedRestaurants{
+    padding: 15px 5px;
+}
+
+.rest-thumb{
+    background-color: #f2f2f2;
+    border: 1px solid #d0cece;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    height: 191px;
+}
+.rest-thumb .rest-image{
+    margin-bottom: 12px;
+}
+.rest-thumb .name{
+    font-size: 13px;
+    font-weight: 600;
+    max-height: 36px;
+    overflow: hidden;
+
+}
+.rest-thumb .distance{
+    font-size: 12px;
+    margin-bottom: 10px;
+
+}
+
+#suggestedRestaurants h4{
+    background-color: rgba(153, 1, 0, 1);
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+#current-location{
+    padding: 10px;
+    font-size: 12px;
+    background: rgba(153, 1, 0, 1);
+    color: white;
+
+}

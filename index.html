@@ -40,6 +40,9 @@
 <!-- BEGIN body -->
 
 <body onload="initialize()" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+
+
   <!-- BEGIN  Loading Section -->
   <div class="loading-overlay">
       <div class="spinner">
@@ -58,55 +61,16 @@
       <!-- Begin header-->
       <header id="header">
 
-          <!-- BEGIN carousel -->
-          <div id="main-carousel" class="carousel slide" data-ride="carousel">
-              <div class="container pos_rel">
 
 
-
-                  <!-- Controls -->
-                  <a class="left carousel-control" href="#main-carousel" role="button" data-slide="prev">
-                      <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  </a>
-                  <a class="right carousel-control" href="#main-carousel" role="button" data-slide="next">
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </a>
-
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner" role="listbox">
-
-                      <!-- Carousel items   -->
-                      <div class="item active">
-                          <div class="carousel-caption">
-                              <div class="fadeUp item_img">
-                                  <img src="src/assets/img/photos/loc.png" alt="sample" />
-                                  <div class="item_badge">
-                                      <span class="badge_btext">Near</span>
-                                      <span class="badge_stext">By</span>
-                                  </div>
-                              </div>
-                              <div class="fadeUp fade-slow item_details">
-                                  <h4 class="item_name">Nearby</h4>
-                                  <p class="item_info">Suggested restaurants near the current displayed location.</p>
-                                  <div class="item_link_box" id="suggestedRestaurants">
-
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-              <!-- /.container -->
-          </div>
-          <!-- END carousel -->
 
           <!-- BEGIN navigation -->
-          <div class="navigation">
+          <div class="navigation" style="background: rgba(153, 1, 0, 1);">
 
               <div class="navbar-container" data-spy="affix" data-offset-top="400">
                   <div class="container">
 
+                    <!--
                       <div class="navbar_top">
                           <div class="top_addr">
                               <span id="location"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
@@ -124,7 +88,6 @@
                           </div>
                       </div>
                       <!-- /.navbar_top -->
-
                       <!-- BEGIN navbar -->
                       <nav class="navbar">
                           <div id="navbar_content">
@@ -133,17 +96,20 @@
                                   <a class="navbar-brand" href="#">
                                       <img src="src/assets/img/logo.png" width="179" height="70" alt="logo" />
                                   </a>
+                                  <!--
                                   <a href="#cd-nav" class="cd-nav-trigger right_menu_icon">
                                       <span><i class="fa fa-bars" aria-hidden="true"></i></span>
                                   </a>
-                              </div>
+                                -->
+                                </div>
+
 
                               <!-- Collect the nav links, forms, and other content for toggling -->
                               <div class="collapse navbar-collapse" id="navbar">
                                   <div class="navbar-right">
                                       <ul class="nav navbar-nav">
                                           <li><a class="page-scroll" href="#header">Home</a></li>
-
+                                          <li><a class="page-scroll" href="#menu">Nearby Restaurants and Shopping Center</a></li>
                                           <li><a class="page-scroll" href="#footer">Map Location</a></li>
                                       </ul>
                                   </div>
@@ -162,6 +128,27 @@
       <!-- End header -->
 
 
+<!-- removed the location and added outside the navigation
+created restaurants and shopping centers divisions.
+
+-->
+
+
+
+<div id="current-location" style="margin-top: 100px;"></div>"
+
+<div class ="item_link_box" id="suggestedRestaurants">
+  <h4 onclick="searchRestaurants()">Restaurants</h4>
+  <div id="rests-body"></div>
+</div>
+
+<div class ="item_link_box" id="suggestedRestaurants">
+  <h4 onclick="searchShoppingCenters()">Shopping Centers</h4>
+  <div id="rests-body"></div>
+</div>
+
+
+
 
       <!--  Begin Footer  -->
       <footer id="footer">
@@ -172,101 +159,12 @@
           <div class="section" id="contact">
               <div id="googleMap"></div>
               <div class="footer_pos">
-
-
-                  <div class="container">
-                      <div class="footer_content">
-                          <div class="row">
-                              <div class="col-sm-6 col-md-4">
-                                  <h4 class="footer_ttl footer_ttl_padd">about us</h4>
-                                  <p class="footer_txt">Five stars restaurants. Highly Recommended. </p>
-                              </div>
-                              <div class="col-sm-6 col-md-5">
-                                  <h4 class="footer_ttl footer_ttl_padd">working hours</h4>
-                                  <div class="footer_border">
-                                      <div class="week_row clearfix">
-                                          <div class="week_day">Monday</div>
-                                          <div class="week_time text-right">Closed</div>
-                                      </div>
-                                      <div class="week_row clearfix">
-                                          <div class="week_day">Tuesday</div>
-                                          <div class="week_time">
-                                              <span class="week_time_start">10 am</span>
-                                              <span class="week_time_node">-</span>
-                                              <span class="week_time_end">12 am</span>
-                                          </div>
-                                      </div>
-                                      <div class="week_row clearfix">
-                                          <div class="week_day">Wednsday</div>
-                                          <div class="week_time">
-                                              <span class="week_time_start">10 am</span>
-                                              <span class="week_time_node">-</span>
-                                              <span class="week_time_end">12 am</span>
-                                          </div>
-
-                                      </div>
-                                      <div class="week_row clearfix">
-                                          <div class="week_day">Thursday</div>
-                                          <div class="week_time">
-                                              <span class="week_time_start">10 am</span>
-                                              <span class="week_time_node">-</span>
-                                              <span class="week_time_end">12 am</span>
-                                          </div>
-
-                                      </div>
-                                      <div class="week_row clearfix">
-                                          <div class="week_day">Friday</div>
-                                          <div class="week_time">
-                                              <span class="week_time_start">10 am</span>
-                                              <span class="week_time_node">-</span>
-                                              <span class="week_time_end">12 am</span>
-                                          </div>
-
-                                      </div>
-                                      <div class="week_row clearfix">
-                                          <div class="week_day">Saturday</div>
-                                          <div class="week_time">
-                                              <span class="week_time_start">7 am</span>
-                                              <span class="week_time_node">-</span>
-                                              <span class="week_time_end">1 am</span>
-                                          </div>
-                                      </div>
-                                      <div class="week_row clearfix">
-                                          <div class="week_day">Sunday</div>
-                                          <div class="week_time">
-                                              <span class="week_time_start">7 am</span>
-                                              <span class="week_time_node">-</span>
-                                              <span class="week_time_end">1 am</span>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-sm-12 col-md-3">
-                                  <h4 class="footer_ttl footer_ttl_padd">contact us</h4>
-                                  <div class="footer_border">
-                                      <div class="footer_cnt">
-                                          <i class="fa fa-map-marker"></i>
-                                          <span>Your City, Your streert, 18765, 100 Tenth Avenue, New York City, NY 1001</span>
-                                      </div>
-                                      <div class="footer_cnt">
-                                          <i class="fa fa-phone"></i>
-                                          <span>(457) 570 5682; (385) 620 756</span>
-                                      </div>
-                                      <div class="footer_cnt">
-                                          <i class="fa fa-envelope"></i>
-                                          <span>info@NTVisitTour.com</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
                   <div class="copyright">
                       <div class="container">
                           <div class="row">
                               <div class="col-md-8">
                                   <div class="copy_text">
-                                      Copyright © 2018 NTVisitTour <span>|</span> All Rights Reserved
+                                      Copyright © 2018VisitTour <span>|</span> All Rights Reserved
                                   </div>
                               </div>
                               <div class="col-md-4">
@@ -303,6 +201,8 @@
       </footer>
 
       <!-- End Footer -->
+
+
       <div id="restaurantModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div class="modal-dialog modal-lg" role="document">
               <div id="rest-modal-content" class="modal-content"></div>
@@ -311,6 +211,7 @@
 
       </div>
       <!-- END body-wrapper -->
+
 
       <!-- START mobile right burger menu -->
 
@@ -361,7 +262,6 @@
       <script src="src/assets/js/main.js"></script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcg5Y2D1fpGI12T8wcbtPIsyGdw-_NV1Y&amp;callback=myMap&amp;libraries=places"></script>
 
-
       <script type="text/javascript">
           var geocoder;
 
@@ -369,16 +269,19 @@
             navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
         }
         //Get the latitude and the longitude;
+        var lat
+        var lng
         function successFunction(position) {
-            var lat = position.coords.latitude;
-            var lng = position.coords.longitude;
-            codeLatLng(lat, lng)
-            nearByLocations(lat, lng)
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
+          codeLatLng(lat, lng)
+
         }
 
         function errorFunction(){
             alert("Geocoder failed");
         }
+
 
           function initialize() {
             geocoder = new google.maps.Geocoder();
@@ -394,7 +297,7 @@
 
                 if (results[1]) {
                  //formatted address
-                 document.getElementById('location').innerHTML = results[0].formatted_address;
+                 document.getElementById('current-location').innerHTML = results[0].formatted_address;
                 //find country name
                      for (var i=0; i<results[0].address_components.length; i++) {
                     for (var b=0;b<results[0].address_components[i].types.length;b++) {
@@ -423,10 +326,11 @@
           var map
           var infowindow;
           var currentLocation
-        function nearByLocations(lat, lng)
+          var elId= 'rests-body'
 
+
+            function nearByLocations(lat, lng, type)
         {
-
           var location = {lat: lat, lng: lng};
           currentLocation = {lat: lat, lng: lng};
 
@@ -439,8 +343,8 @@
           var placeService = new google.maps.places.PlacesService(map)
           var nearBySearch = placeService.nearbySearch({
               location: location,
-              radius: 1000,
-              type: 'restaurants',
+              radius: 3000,
+              type: type,
 
           }, nearBySearchCallback)
         }
@@ -495,6 +399,9 @@
                           var div = document.createElement('div')
                           div.className = 'col-xs-6 col-md-4'
 
+                          var div2 = document.createElement('div')
+                          div2.className = 'rest-thumb'
+
                           var imageDiv = document.createElement('div')
                           imageDiv.className = 'rest-image'
 
@@ -517,11 +424,13 @@
                           div.appendChild(name)
                           div.appendChild(distance)
                           div.appendChild(button)
+                          div.appendChild(div2)
+
 
                           row.appendChild(div)
                         }
                         //row += '</div>'
-                        document.getElementById('suggestedRestaurants').appendChild(row)
+                        document.getElementById(elId).appendChild(row)
                     });
 
                 }
@@ -568,6 +477,19 @@
 
                 modalContent.html(row)
             }
+
+            function searchRestaurants(){
+              document.getElementById(elId).innerHTML = ''
+              elId = 'rests-body'
+              nearByLocations (lat, lng, 'restaurant')
+            }
+
+            function searchShoppingCenters(){
+              document.getElementById(elId).innerHTML = ''
+              elId = 'rests-body'
+              nearByLocations (lat, lng, 'shopping_mall')
+
+          }
 
           </script>
 
